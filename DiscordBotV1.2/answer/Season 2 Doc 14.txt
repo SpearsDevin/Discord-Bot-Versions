@@ -1,0 +1,3 @@
+The answer for today's riddle is...
+
+You ask each twin What would your brother say?. This works because.... Well let's say the correct path is on the left side. So say you asked the liar "What would your brother say?" Well, the liar would know his brother was honest and he would say the left side, but since the liar lies, he would say right. If you asked the honest twin the same question, he would say right, because he knows his brother will lie. Therefore, you would know that the correct path was the left!
