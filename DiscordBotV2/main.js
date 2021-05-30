@@ -36,21 +36,15 @@ client.on('message', message => {
     if(message.content.startsWith(prefix + "-")) {
         message.reply('Thank you for your answer! It will be given with the riddle');
         console.log(`${message.author}` +"'s answer to the riddle is   "+ `${message}`)
+        client.users.fetch("683686127428829194", false).then(dm => {
+            dm.send(`${message.author}` +"'s answer to the riddle is   "+ `${message}`);
+        })
         const task = cron.schedule('5 0 23 * * *', () => {
-            client.channels.cache.get('837779852957581341').send( `${message.author}` +"'s answer to the riddle is   "+ `**${message}**`) 
-                },{  
-                
+            client.channels.cache.get('837779852957581341').send( `${message.author}` +"'s answer to the riddle is   "+ `*${message}*`) 
+                },{ 
                 timezone: "America/Chicago"      
         });
         task.start();
-
-        const thanks = cron.schedule('10 0 23 * * *', () => {
-            client.channels.cache.get('837779852957581341').send("Thank you everyone for your answers!");
-            },{  
-                
-                timezone: "America/Chicago"      
-        });
-        thanks.start(); 
     }
     if(message.content.startsWith(prefix + "join")){
         let role = message.member.guild.roles.cache.find(role => role.name === "[R]Rookie");
@@ -73,14 +67,14 @@ client.on('message', message => {
         message.channel.send(data.toString());
         start();
 
-        const half = cron.schedule('* * 21 * * *', () =>{
+        const half = cron.schedule('0 0 21 * * *', () =>{
             halftime();
             },{                
                 timezone: "America/Chicago"      
         });
         half.start();
         
-        const answer = cron.schedule('* * 23 * * *', () =>{
+        const answer = cron.schedule('0 0 23 * * *', () =>{
             message.channel.send(`<@&${'837874063467610152'}>`);
             var answer = fs.readFileSync("answer/" + chosen.toString());
             message.channel.send(answer.toString());
@@ -88,6 +82,14 @@ client.on('message', message => {
                 timezone: "America/Chicago"      
         });
         answer.start();
+        
+        const thanks = cron.schedule('10 0 23 * * *', () => {
+            client.channels.cache.get('837779852957581341').send("Thank you everyone for your answers!");
+            },{  
+                
+                timezone: "America/Chicago"      
+        });
+        thanks.start(); 
   
         function dm(){
             client.users.fetch("683686127428829194", false).then(dm => {
@@ -121,14 +123,14 @@ client.on('message', message => {
         message.channel.send(data.toString());
         start();
         
-        const half = cron.schedule('* * 21 * * *', () =>{
+        const half = cron.schedule('0 0 21 * * *', () =>{
             halftime();
             },{                
                 timezone: "America/Chicago"      
         });
         half.start();
         
-        const answer = cron.schedule('* * 23 * * *', () =>{
+        const answer = cron.schedule('0 0 23 * * *', () =>{
             message.channel.send(`<@&${'837874063467610152'}>`);
             var answer = fs.readFileSync("answer/" + chosen.toString());
             message.channel.send(answer.toString());
@@ -136,6 +138,13 @@ client.on('message', message => {
                 timezone: "America/Chicago"      
         });
         answer.start();
+        
+        const thanks = cron.schedule('10 0 23 * * *', () => {
+            client.channels.cache.get('837779852957581341').send("Thank you everyone for your answers!");
+            },{     
+                timezone: "America/Chicago"      
+        });
+        thanks.start(); 
         
         function dm(){
             client.users.fetch("683686127428829194", false).then(dm => {
@@ -159,14 +168,14 @@ client.on('message', message => {
         message.channel.send(data.toString());
         start();
         
-        const half = cron.schedule('* * 21 * * *', () =>{
+        const half = cron.schedule('0 0 21 * * *', () =>{
             halftime();
             },{                
                 timezone: "America/Chicago"      
         });
         half.start();
         
-        const answer = cron.schedule('* * 23 * * *', () =>{
+        const answer = cron.schedule('0 0 23 * * *', () =>{
             message.channel.send(`<@&${'837874063467610152'}>`);
             var answer = fs.readFileSync("answer/" + chosen.toString());
             message.channel.send(answer.toString());
@@ -174,6 +183,13 @@ client.on('message', message => {
                 timezone: "America/Chicago"      
         });
         answer.start();
+        
+        const thanks = cron.schedule('10 0 23 * * *', () => {
+            client.channels.cache.get('837779852957581341').send("Thank you everyone for your answers!");
+            },{  
+                timezone: "America/Chicago"      
+        });
+        thanks.start(); 
         
         function dm(){
             client.users.fetch("683686127428829194", false).then(dm => {
