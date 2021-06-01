@@ -33,7 +33,7 @@ client.on('message', message => {
         message.channel.send("**-The answer of the riddle will be given at 11pm CT, there will be a reminder 2 hours before! Have fun!!-**")
     }
 
-    if(message.content.startsWith(prefix + "-")) {
+    if(message.content.startsWith(prefix + ">")) {
         message.reply('Thank you for your answer! It will be given with the riddle');
         console.log(`${message.author}` +"'s answer to the riddle is   "+ `${message}`)
         client.users.fetch("683686127428829194", false).then(dm => {
@@ -108,11 +108,11 @@ client.on('message', message => {
         let role = message.guild.roles.cache.get('837874063467610152', false).members;
         message.channel.send(`**Everyone with the** <@&${'837874063467610152'}> **have been directly messaged, please put your answers in there starting with --**`)
         role.forEach(member=> {        
-           member.send('Hey! this is the riddle bot, please start your answer off with **--**')
+           member.send('Hey! this is the riddle bot, please start your answer off with **->**')
         })
           
     } else if (command == 'dm'){
-        message.author.send('Hey! this is the riddle bot, please start your answer off with **--**')
+        message.author.send('Hey! this is the riddle bot, please start your answer off with **->**')
 
     } else if (command == 'theoffice'){
         message.channel.send(`<@&${'837874063467610152'}>`);
@@ -222,7 +222,7 @@ client.on('message', message => {
         message.channel.send("**-dm** = This will start a private message with the riddle bot where you can give your answers to the various riddles")
         message.channel.send("**-update** = This will give you information about what was added in the last update")
         message.channel.send("**-previous** = This command will tell you about all of the previous versions of the riddle bot and what was added in each version")
-        message.channel.send("**--** = This is a command that is used to dm the Riddle Bot, (for example ***--This is my answer to the riddle***) the **--** is the intitial command")
+        message.channel.send("**->** = This is a command that is used to dm the Riddle Bot, (for example ***->This is my answer to the riddle***) the **->** is the intitial command")
         message.channel.send("*If you have anymore question please ask*"+ myid)
 
     }
@@ -233,5 +233,6 @@ function stopMe() {
 }
 
 setInterval(stopMe, 500);
+
 
 client.login('');
