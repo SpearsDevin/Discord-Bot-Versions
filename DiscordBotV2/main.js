@@ -22,10 +22,10 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
     
     var  myid="<@683686127428829194>" 
-    var rookie=`<@&${'837874063467610152'}>`
+    var rookie=`<@&${'825499310825013308'}>`
 
     function halftime() {
-        message.channel.send(`<@&${'837874063467610152'}>`)
+        message.channel.send(`<@&${'825499310825013308'}>`)
         message.channel.send("**-Only 2 hours left till the answer for the riddle-**")
     }
 
@@ -33,19 +33,49 @@ client.on('message', message => {
         message.channel.send("**-The answer of the riddle will be given at 11pm CT, there will be a reminder 2 hours before! Have fun!!-**")
     }
 
-    if(message.content.startsWith(prefix + ">")) {
+    if(message.content.startsWith(prefix + "R>")) {
         message.reply('Thank you for your answer! It will be given with the riddle');
         console.log(`${message.author}` +"'s answer to the riddle is   "+ `${message}`)
         client.users.fetch("683686127428829194", false).then(dm => {
             dm.send(`${message.author}` +"'s answer to the riddle is   "+ `${message}`);
         })
         const task = cron.schedule('5 0 23 * * *', () => {
-            client.channels.cache.get('837779852957581341').send( `${message.author}` +"'s answer to the riddle is   "+ `*${message}*`) 
-                },{ 
+            client.channels.cache.get('850061744029958226').send( `${message.author}` +"'s answer to the riddle is   "+ `*${message}*`) 
+        },{ 
                 timezone: "America/Chicago"      
         });
         task.start();
     }
+
+    if(message.content.startsWith(prefix + "O>")) {
+        message.reply('Thank you for your answer! It will be given with the riddle');
+        console.log(`${message.author}` +"'s answer to the riddle is   "+ `${message}`)
+        client.users.fetch("683686127428829194", false).then(dm => {
+            dm.send(`${message.author}` +"'s answer to the riddle is   "+ `${message}`);
+        })
+        const task = cron.schedule('5 0 23 * * *', () => {
+            client.channels.cache.get('850061766045728808').send( `${message.author}` +"'s answer to the riddle is   "+ `*${message}*`) 
+        },{ 
+                timezone: "America/Chicago"      
+        });
+        task.start();
+    }
+
+    if(message.content.startsWith(prefix + "P>")) {
+        message.reply('Thank you for your answer! It will be given with the riddle');
+        console.log(`${message.author}` +"'s answer to the riddle is   "+ `${message}`)
+        client.users.fetch("683686127428829194", false).then(dm => {
+            dm.send(`${message.author}` +"'s answer to the riddle is   "+ `${message}`);
+        })
+        
+        const task = cron.schedule('5 0 23 * * *', () => {
+            client.channels.cache.get('850061785976930315').send( `${message.author}` +"'s answer to the riddle is   "+ `*${message}*`) 
+        },{ 
+                timezone: "America/Chicago"      
+        });
+        task.start();
+    }
+
     if(message.content.startsWith(prefix + "join")){
         let role = message.member.guild.roles.cache.find(role => role.name === "[R]Rookie");
         if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
@@ -59,7 +89,7 @@ client.on('message', message => {
     }
 
     if(command === 'riddle'){
-        message.channel.send(`<@&${'837874063467610152'}>`);
+        message.channel.send(`<@&${'825499310825013308'}>`);
         var files = fs.readdirSync('random/')
         let chosen = files[Math.floor(Math.random() * files.length)] 
         var data = fs.readFileSync(chosen.toString()); 
@@ -75,7 +105,7 @@ client.on('message', message => {
         half.start();
         
         const answer = cron.schedule('0 0 23 * * *', () =>{
-            message.channel.send(`<@&${'837874063467610152'}>`);
+            message.channel.send(`<@&${'825499310825013308'}>`);
             var answer = fs.readFileSync("answer/" + chosen.toString());
             message.channel.send(answer.toString());
             },{                  
@@ -84,7 +114,7 @@ client.on('message', message => {
         answer.start();
         
         const thanks = cron.schedule('10 0 23 * * *', () => {
-            client.channels.cache.get('837779852957581341').send("Thank you everyone for your answers!");
+            client.channels.cache.get('825489770557341696').send("Thank you everyone for your answers!");
             },{  
                 
                 timezone: "America/Chicago"      
@@ -105,17 +135,17 @@ client.on('message', message => {
         setTimeout(dmtwo, 1000);
 
     } else if (command == 'dm-all'){
-        let role = message.guild.roles.cache.get('837874063467610152', false).members;
+        let role = message.guild.roles.cache.get('825499310825013308', false).members;
         message.channel.send(`**Everyone with the** <@&${'837874063467610152'}> **have been directly messaged, please put your answers in there starting with --**`)
         role.forEach(member=> {        
-           member.send('Hey! this is the riddle bot, please start your answer off with **->**')
+           member.send('Hey! this is the riddle bot, please start your answer off with **-R> for the Daily Riddle, -O> for the Office Riddle, -P> for the Parks n Rec Riddle**')
         })
           
     } else if (command == 'dm'){
-        message.author.send('Hey! this is the riddle bot, please start your answer off with **->**')
+        message.author.send('Hey! this is the riddle bot, please start your answer off with **-R> for the Daily Riddle, -O> for the Office Riddle, -P> for the Parks n Rec Riddle**')
 
     } else if (command == 'theoffice'){
-        message.channel.send(`<@&${'837874063467610152'}>`);
+        message.channel.send(`<@&${'825499310825013308'}>`);
         var files = fs.readdirSync('TheOffice/')
         let chosen = files[Math.floor(Math.random() * files.length)] 
         var data = fs.readFileSync(chosen.toString()); 
@@ -131,7 +161,7 @@ client.on('message', message => {
         half.start();
         
         const answer = cron.schedule('0 0 23 * * *', () =>{
-            message.channel.send(`<@&${'837874063467610152'}>`);
+            message.channel.send(`<@&${'825499310825013308'}>`);
             var answer = fs.readFileSync("answer/" + chosen.toString());
             message.channel.send(answer.toString());
             },{                  
@@ -140,7 +170,7 @@ client.on('message', message => {
         answer.start();
         
         const thanks = cron.schedule('10 0 23 * * *', () => {
-            client.channels.cache.get('837779852957581341').send("Thank you everyone for your answers!");
+            client.channels.cache.get('825489852031565824').send("Thank you everyone for your answers!");
             },{     
                 timezone: "America/Chicago"      
         });
@@ -176,7 +206,7 @@ client.on('message', message => {
         half.start();
         
         const answer = cron.schedule('0 0 23 * * *', () =>{
-            message.channel.send(`<@&${'837874063467610152'}>`);
+            message.channel.send(`<@&${'825499310825013308'}>`);
             var answer = fs.readFileSync("answer/" + chosen.toString());
             message.channel.send(answer.toString());
             },{                  
@@ -185,7 +215,7 @@ client.on('message', message => {
         answer.start();
         
         const thanks = cron.schedule('10 0 23 * * *', () => {
-            client.channels.cache.get('837779852957581341').send("Thank you everyone for your answers!");
+            client.channels.cache.get('825490014661378049').send("Thank you everyone for your answers!");
             },{  
                 timezone: "America/Chicago"      
         });
@@ -222,11 +252,16 @@ client.on('message', message => {
         message.channel.send("**-dm** = This will start a private message with the riddle bot where you can give your answers to the various riddles")
         message.channel.send("**-update** = This will give you information about what was added in the last update")
         message.channel.send("**-previous** = This command will tell you about all of the previous versions of the riddle bot and what was added in each version")
-        message.channel.send("**->** = This is a command that is used to dm the Riddle Bot, (for example ***->This is my answer to the riddle***) the **->** is the intitial command")
+        message.channel.send("**-R>** = This is a command that is used to dm the Riddle Bot for the Daily Riddle, (for example ***-R>This is my answer to the riddle***) the **-R>** is the intitial command")
+        message.channel.send("**-O>** = This is a command that is used to dm the Riddle Bot for the The Office Riddle, (for example ***-O>This is my answer to the riddle***) the **-O>** is the intitial command")
+        message.channel.send("**-P>** = This is a command that is used to dm the Riddle Bot for the Parks n Rec Riddle, (for example ***-P>This is my answer to the riddle***) the **-P>** is the intitial command")
+
         message.channel.send("*If you have anymore question please ask*"+ myid)
 
     }
 });
+
+
 
 function stopMe() {
     console.log("Hello");
