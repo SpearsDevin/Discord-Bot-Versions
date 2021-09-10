@@ -1,0 +1,19 @@
+{
+  "name": "discordbotv2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "directory": "./random",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "author": "Devin",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "node-cron": "^3.0.0",
+    "ws": "^7.4.6"
+  },
+  "heroku-run-build-script": true
+}
