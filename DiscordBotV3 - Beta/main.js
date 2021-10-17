@@ -47,41 +47,47 @@ client.on('message', async message   => {
 
             embed.setColor("#55FFFF")
             embed.setDescription(`${message.author}` +"'s answer to the riddle is   "+ `${message}`);
-                const Filter = (user) => user.id == `683686127428829194`;
+                const Filter = (reaction, user) => user.id == `683686127428829194`;
                 const reactionMessage = await dm.send(embed);
                 await reactionMessage.react("👍");
                 await reactionMessage.react("👎");
-                reactionMessage.awaitReactions(Filter, {max: 1,  errors: ["time"]}).then(collected => {
+                reactionMessage.awaitReactions(Filter,{max: 1,  errors: ["time"]}).then(collected => {
                     const reaction = collected.first();
 
                     if (reaction.emoji.name === "👍" ) {
-                        client.users.fetch("683686127428829194", false).then(async dm => {
-                            dm.send(`${message.author}'s` + "answer was correct");
-                        })
-
-                        correct.setColor("#55FFFF")
+                        correct.setColor("#00FF00")
                         correct.setDescription(`${message.author}` +"'s answer to the riddle was correct!!");
+
+                            client.users.fetch("683686127428829194", false).then(async dm => {
+                                dm.send(correct);
+                            })  
+                            client.users.fetch("766353364933410820", false).then(async dm => {
+                                dm.send(correct);
+                            })
+
                         const task = cron.schedule('5 0 23 * * *', () => {
                             client.channels.cache.get('850061744029958226').send(correct) 
+                            setTimeout(answer1(), 3.32e+7);
                         },{ 
                                 timezone: "America/Chicago"      
                         });
                         task.start();
-                        
+                        function answer1(){
+                                task.stop()
+                        }                       
+                        console.log("Devin")                      
                     } 
-                    if (reaction.emoji.name === "👎"){ 
-                        client.users.fetch("683686127428829194", false).then(async dm => {
-                            dm.send(`${message.author}'s` + " answer was incorrect");
-                        })
+                    if (reaction.emoji.name === "👎"){
+                        incorrect.setColor("#00FF00")
+                        incorrect.setDescription(`${message.author}'s` + " answer was incorrect");
 
-                        incorrect.setColor("#55FFFF")
-                        incorrect.setDescription(`${message.author}` +"'s answer to the riddle was incorrect. Thank you for participating, maybe next time!!");
-                        const task_two = cron.schedule('5 0 23 * * *', () => {
-                            client.channels.cache.get('850061744029958226').send(incorrect) 
-                        },{ 
-                                timezone: "America/Chicago"      
-                        });
-                        task_two.start();
+                            client.users.fetch("683686127428829194", false).then(async dm => {
+                                dm.send(incorrect);
+                            })
+                            client.users.fetch("766353364933410820", false).then(async dm => {
+                                dm.send(incorrect);
+                            })  
+                        console.log("Devin")
                     }
                 })
             }) 
@@ -94,45 +100,51 @@ client.on('message', async message   => {
 
             embed.setColor("#55FFFF")
             embed.setDescription(`${message.author}` +"'s answer to the riddle is   "+ `${message}`);
-                const Filter = (user) => user.id == `766353364933410820`;
-                const reactionMessage = await dm.send(embed);
-                await reactionMessage.react("👍");
-                await reactionMessage.react("👎");
-                reactionMessage.awaitReactions(Filter, {max: 1,  errors: ["time"]}).then(collected => {
-                    const reaction = collected.first();
+            const Filter = (reaction, user) => user.id == `766353364933410820`;
+            const reactionMessage = await dm.send(embed);
+            await reactionMessage.react("👍");
+            await reactionMessage.react("👎");
+            reactionMessage.awaitReactions(Filter, {max: 1,  errors: ["time"]}).then(collected => {
+                const reaction = collected.first();
 
-                    if (reaction.emoji.name === "👍" ) {
+                if (reaction.emoji.name === "👍" ) {
+                    correct.setColor("#00FF00")
+                    correct.setDescription(`${message.author}` +"'s answer to the riddle was correct!!");
+
+                        client.users.fetch("683686127428829194", false).then(async dm => {
+                            dm.send(correct);
+                        })  
                         client.users.fetch("766353364933410820", false).then(async dm => {
-                            dm.send(`${message.author}'s` + "answer was correct");
+                            dm.send(correct);
                         })
 
-                        correct.setColor("#55FFFF")
-                        correct.setDescription(`${message.author}` +"'s answer to the riddle was correct!!");
-                        const task = cron.schedule('5 0 23 * * *', () => {
-                            client.channels.cache.get('850061744029958226').send(correct) 
-                        },{ 
-                                timezone: "America/Chicago"      
-                        });
-                        task.start();
-                        
-                    } 
-                    if (reaction.emoji.name === "👎"){ 
-                        client.users.fetch("766353364933410820", false).then(async dm => {
-                            dm.send(`${message.author}'s` + " answer was incorrect");
+                    const task = cron.schedule('5 0 23 * * *', () => {
+                        client.channels.cache.get('850061744029958226').send(correct) 
+                        setTimeout(answer1(), 3.32e+7);
+                    },{ 
+                            timezone: "America/Chicago"      
+                    });
+                    task.start();  
+                    function answer1(){
+                        task.stop()
+                    }  
+                    console.log("Bren")                      
+                } 
+                if (reaction.emoji.name === "👎"){ 
+                    incorrect.setColor("#FF0000")
+                    incorrect.setDescription(`${message.author}'s` + " answer was incorrect");
+                    
+                        client.users.fetch("683686127428829194", false).then(async dm => {
+                            dm.send(incorrect);
                         })
-
-                        incorrect.setColor("#55FFFF")
-                        incorrect.setDescription(`${message.author}` +"'s answer to the riddle was incorrect. Thank you for participating, maybe next time!!");
-                        const task_two = cron.schedule('5 0 23 * * *', () => {
-                            client.channels.cache.get('850061744029958226').send(incorrect) 
-                        },{ 
-                                timezone: "America/Chicago"      
-                        });
-                        task_two.start();
-                    }
-                })
-            }) 
-        }
+                        client.users.fetch("766353364933410820", false).then(async dm => {
+                            dm.send(incorrect);
+                        })  
+                    console.log("Bren")
+                }
+            })
+        })
+    }
 
     //Dm command for Office Riddle
     if(message.content.startsWith(prefix + "O>")) {
@@ -147,41 +159,47 @@ client.on('message', async message   => {
 
             embed.setColor("#55FFFF")
             embed.setDescription(`${message.author}` +"'s answer to the riddle is   "+ `${message}`);
-                const Filter = (user) => user.id == `683686127428829194`;
+                const Filter = (reaction, user) => user.id == `683686127428829194`;
                 const reactionMessage = await dm.send(embed);
                 await reactionMessage.react("👍");
                 await reactionMessage.react("👎");
-                reactionMessage.awaitReactions(Filter, {max: 1,  errors: ["time"]}).then(collected => {
+                reactionMessage.awaitReactions(Filter,{max: 1,  errors: ["time"]}).then(collected => {
                     const reaction = collected.first();
 
                     if (reaction.emoji.name === "👍" ) {
-                        client.users.fetch("683686127428829194", false).then(async dm => {
-                            dm.send(`${message.author}'s` + "answer was correct");
-                        })
-
-                        correct.setColor("#55FFFF")
+                        correct.setColor("#00FF00")
                         correct.setDescription(`${message.author}` +"'s answer to the riddle was correct!!");
+
+                            client.users.fetch("683686127428829194", false).then(async dm => {
+                                dm.send(correct);
+                            })  
+                            client.users.fetch("766353364933410820", false).then(async dm => {
+                                dm.send(correct);
+                            })
+
                         const task = cron.schedule('5 0 23 * * *', () => {
                             client.channels.cache.get('850061744029958226').send(correct) 
+                            setTimeout(answer1(), 3.32e+7);
                         },{ 
                                 timezone: "America/Chicago"      
                         });
                         task.start();
-                        
+                        function answer1(){
+                                task.stop()
+                        }                       
+                        console.log("Devin")                      
                     } 
-                    if (reaction.emoji.name === "👎"){ 
-                        client.users.fetch("683686127428829194", false).then(async dm => {
-                            dm.send(`${message.author}'s` + " answer was incorrect");
-                        })
+                    if (reaction.emoji.name === "👎"){
+                        incorrect.setColor("#00FF00")
+                        incorrect.setDescription(`${message.author}'s` + " answer was incorrect");
 
-                        incorrect.setColor("#55FFFF")
-                        incorrect.setDescription(`${message.author}` +"'s answer to the riddle was incorrect. Thank you for participating, maybe next time!!");
-                        const task_two = cron.schedule('5 0 23 * * *', () => {
-                            client.channels.cache.get('850061744029958226').send(incorrect) 
-                        },{ 
-                                timezone: "America/Chicago"      
-                        });
-                        task_two.start();
+                            client.users.fetch("683686127428829194", false).then(async dm => {
+                                dm.send(incorrect);
+                            })
+                            client.users.fetch("766353364933410820", false).then(async dm => {
+                                dm.send(incorrect);
+                            })  
+                        console.log("Devin")
                     }
                 })
             }) 
@@ -194,44 +212,50 @@ client.on('message', async message   => {
 
             embed.setColor("#55FFFF")
             embed.setDescription(`${message.author}` +"'s answer to the riddle is   "+ `${message}`);
-                const Filter = (user) => user.id == `766353364933410820`;
-                const reactionMessage = await dm.send(embed);
-                await reactionMessage.react("👍");
-                await reactionMessage.react("👎");
-                reactionMessage.awaitReactions(Filter, {max: 1,  errors: ["time"]}).then(collected => {
-                    const reaction = collected.first();
+            const Filter = (reaction, user) => user.id == `766353364933410820`;
+            const reactionMessage = await dm.send(embed);
+            await reactionMessage.react("👍");
+            await reactionMessage.react("👎");
+            reactionMessage.awaitReactions(Filter, {max: 1,  errors: ["time"]}).then(collected => {
+                const reaction = collected.first();
 
-                    if (reaction.emoji.name === "👍" ) {
+                if (reaction.emoji.name === "👍" ) {
+                    correct.setColor("#00FF00")
+                    correct.setDescription(`${message.author}` +"'s answer to the riddle was correct!!");
+
+                        client.users.fetch("683686127428829194", false).then(async dm => {
+                            dm.send(correct);
+                        })  
                         client.users.fetch("766353364933410820", false).then(async dm => {
-                            dm.send(`${message.author}'s` + "answer was correct");
+                            dm.send(correct);
                         })
 
-                        correct.setColor("#55FFFF")
-                        correct.setDescription(`${message.author}` +"'s answer to the riddle was correct!!");
-                        const task = cron.schedule('5 0 23 * * *', () => {
-                            client.channels.cache.get('850061744029958226').send(correct) 
-                        },{ 
-                                timezone: "America/Chicago"      
-                        });
-                        task.start();
-                        
-                    } 
-                    if (reaction.emoji.name === "👎"){ 
-                        client.users.fetch("766353364933410820", false).then(async dm => {
-                            dm.send(`${message.author}'s` + " answer was incorrect");
+                    const task = cron.schedule('5 0 23 * * *', () => {
+                        client.channels.cache.get('850061744029958226').send(correct) 
+                        setTimeout(answer1(), 3.32e+7);
+                    },{ 
+                            timezone: "America/Chicago"      
+                    });
+                    task.start();  
+                    function answer1(){
+                        task.stop()
+                    }  
+                    console.log("Bren")                      
+                } 
+                if (reaction.emoji.name === "👎"){ 
+                    incorrect.setColor("#FF0000")
+                    incorrect.setDescription(`${message.author}'s` + " answer was incorrect");
+                    
+                        client.users.fetch("683686127428829194", false).then(async dm => {
+                            dm.send(incorrect);
                         })
-
-                        incorrect.setColor("#55FFFF")
-                        incorrect.setDescription(`${message.author}` +"'s answer to the riddle was incorrect. Thank you for participating, maybe next time!!");
-                        const task_two = cron.schedule('5 0 23 * * *', () => {
-                            client.channels.cache.get('850061744029958226').send(incorrect) 
-                        },{ 
-                                timezone: "America/Chicago"      
-                        });
-                        task_two.start();
-                    }
-                })
-            }) 
+                        client.users.fetch("766353364933410820", false).then(async dm => {
+                            dm.send(incorrect);
+                        })  
+                    console.log("Bren")
+                }
+            })
+        }) 
     }
 
     //Dm command for ParksnRec Riddle
@@ -247,41 +271,47 @@ client.on('message', async message   => {
 
             embed.setColor("#55FFFF")
             embed.setDescription(`${message.author}` +"'s answer to the riddle is   "+ `${message}`);
-                const Filter = (user) => user.id == `683686127428829194`;
+                const Filter = (reaction, user) => user.id == `683686127428829194`;
                 const reactionMessage = await dm.send(embed);
                 await reactionMessage.react("👍");
                 await reactionMessage.react("👎");
-                reactionMessage.awaitReactions(Filter, {max: 1,  errors: ["time"]}).then(collected => {
+                reactionMessage.awaitReactions(Filter,{max: 1,  errors: ["time"]}).then(collected => {
                     const reaction = collected.first();
 
                     if (reaction.emoji.name === "👍" ) {
-                        client.users.fetch("683686127428829194", false).then(async dm => {
-                            dm.send(`${message.author}'s` + "answer was correct");
-                        })
-
-                        correct.setColor("#55FFFF")
+                        correct.setColor("#00FF00")
                         correct.setDescription(`${message.author}` +"'s answer to the riddle was correct!!");
+
+                            client.users.fetch("683686127428829194", false).then(async dm => {
+                                dm.send(correct);
+                            })  
+                            client.users.fetch("766353364933410820", false).then(async dm => {
+                                dm.send(correct);
+                            })
+
                         const task = cron.schedule('5 0 23 * * *', () => {
                             client.channels.cache.get('850061744029958226').send(correct) 
+                            setTimeout(answer1(), 3.32e+7);
                         },{ 
                                 timezone: "America/Chicago"      
                         });
                         task.start();
-                        
+                        function answer1(){
+                                task.stop()
+                        }                       
+                        console.log("Devin")                      
                     } 
-                    if (reaction.emoji.name === "👎"){ 
-                        client.users.fetch("683686127428829194", false).then(async dm => {
-                            dm.send(`${message.author}'s` + " answer was incorrect");
-                        })
+                    if (reaction.emoji.name === "👎"){
+                        incorrect.setColor("#00FF00")
+                        incorrect.setDescription(`${message.author}'s` + " answer was incorrect");
 
-                        incorrect.setColor("#55FFFF")
-                        incorrect.setDescription(`${message.author}` +"'s answer to the riddle was incorrect. Thank you for participating, maybe next time!!");
-                        const task_two = cron.schedule('5 0 23 * * *', () => {
-                            client.channels.cache.get('850061744029958226').send(incorrect) 
-                        },{ 
-                                timezone: "America/Chicago"      
-                        });
-                        task_two.start();
+                            client.users.fetch("683686127428829194", false).then(async dm => {
+                                dm.send(incorrect);
+                            })
+                            client.users.fetch("766353364933410820", false).then(async dm => {
+                                dm.send(incorrect);
+                            })  
+                        console.log("Devin")
                     }
                 })
             }) 
@@ -294,44 +324,50 @@ client.on('message', async message   => {
 
             embed.setColor("#55FFFF")
             embed.setDescription(`${message.author}` +"'s answer to the riddle is   "+ `${message}`);
-                const Filter = (user) => user.id == `766353364933410820`;
-                const reactionMessage = await dm.send(embed);
-                await reactionMessage.react("👍");
-                await reactionMessage.react("👎");
-                reactionMessage.awaitReactions(Filter, {max: 1,  errors: ["time"]}).then(collected => {
-                    const reaction = collected.first();
+            const Filter = (reaction, user) => user.id == `766353364933410820`;
+            const reactionMessage = await dm.send(embed);
+            await reactionMessage.react("👍");
+            await reactionMessage.react("👎");
+            reactionMessage.awaitReactions(Filter, {max: 1,  errors: ["time"]}).then(collected => {
+                const reaction = collected.first();
 
-                    if (reaction.emoji.name === "👍" ) {
+                if (reaction.emoji.name === "👍" ) {
+                    correct.setColor("#00FF00")
+                    correct.setDescription(`${message.author}` +"'s answer to the riddle was correct!!");
+
+                        client.users.fetch("683686127428829194", false).then(async dm => {
+                            dm.send(correct);
+                        })  
                         client.users.fetch("766353364933410820", false).then(async dm => {
-                            dm.send(`${message.author}'s` + "answer was correct");
+                            dm.send(correct);
                         })
 
-                        correct.setColor("#55FFFF")
-                        correct.setDescription(`${message.author}` +"'s answer to the riddle was correct!!");
-                        const task = cron.schedule('5 0 23 * * *', () => {
-                            client.channels.cache.get('850061744029958226').send(correct) 
-                        },{ 
-                                timezone: "America/Chicago"      
-                        });
-                        task.start();
-                        
-                    } 
-                    if (reaction.emoji.name === "👎"){ 
-                        client.users.fetch("766353364933410820", false).then(async dm => {
-                            dm.send(`${message.author}'s` + " answer was incorrect");
+                    const task = cron.schedule('5 0 23 * * *', () => {
+                        client.channels.cache.get('850061744029958226').send(correct) 
+                        setTimeout(answer1(), 3.32e+7);
+                    },{ 
+                            timezone: "America/Chicago"      
+                    });
+                    task.start();  
+                    function answer1(){
+                        task.stop()
+                    }  
+                    console.log("Bren")                      
+                } 
+                if (reaction.emoji.name === "👎"){ 
+                    incorrect.setColor("#FF0000")
+                    incorrect.setDescription(`${message.author}'s` + " answer was incorrect");
+                    
+                        client.users.fetch("683686127428829194", false).then(async dm => {
+                            dm.send(incorrect);
                         })
-
-                        incorrect.setColor("#55FFFF")
-                        incorrect.setDescription(`${message.author}` +"'s answer to the riddle was incorrect. Thank you for participating, maybe next time!!");
-                        const task_two = cron.schedule('5 0 23 * * *', () => {
-                            client.channels.cache.get('850061744029958226').send(incorrect) 
-                        },{ 
-                                timezone: "America/Chicago"      
-                        });
-                        task_two.start();
-                    }
-                })
-            }) 
+                        client.users.fetch("766353364933410820", false).then(async dm => {
+                            dm.send(incorrect);
+                        })  
+                    console.log("Bren")
+                }
+            })
+        }) 
     }
 
     //Command to add the Rookie role to be mentioned for anoucments about riddles
@@ -360,29 +396,41 @@ client.on('message', async message   => {
         //Runs the Halftime code at the beginning of the code at 9pm CST
         const half = cron.schedule('0 0 21 * * *', () =>{
             halftime();
+            setTimeout(halft, 3.32e+7)
             },{                
                 timezone: "America/Chicago"      
         });
         half.start();
-        
+        function halft(){
+            half.stop();
+        }
         //Gives answer of the riddle at 11pm CST
         const answer = cron.schedule('0 0 23 * * *', () =>{
             message.channel.send(`<@&${'837874063467610152'}>`); //mentions everyone with the Rookie role
             var answer = fs.readFileSync("answer/" + chosen.toString()); //Changes original file to directory to answer and finds a .txt file with the same name from the random directory
             message.channel.send(answer.toString()); //Reads contents in chat
+            setTimeout(answer1(), 3.32e+7);
             },{                  
                 timezone: "America/Chicago"      
         });
         answer.start();
+        function answer1(){
+            answer.stop();
+        }
 
         //Runs thanks command 10 seconds after answer is given so that way it doesnt interupt the answer being given
         const thanks = cron.schedule('10 0 23 * * *', () => {
-            client.channels.cache.get('825489770557341696').send("Thank you everyone for your answers!");
+            client.channels.cache.get('850061744029958226').send("Thank you everyone for your answers!");
+            setTimeout(thanks1(), 3.32e+7)
             },{  
                 
                 timezone: "America/Chicago"      
         });
         thanks.start(); 
+        function thanks1(){
+            thanks.stop();
+        }
+
   
         function dm(){ //Dm's Devin what .txt file was read
             client.users.fetch("683686127428829194", false).then(dm => {
@@ -413,7 +461,7 @@ client.on('message', async message   => {
 
     } else if (command == 'theoffice'){ //Command for the Office Riddles
         message.channel.send(`<@&${'837874063467610152'}>`); //Tags everyone with the Rookie role
-        var files = fs.readdirSync('TheOffice/')   //Goes to random file directory
+        var files = fs.readdirSync('random/')   //Goes to random file directory
         let chosen = files[Math.floor(Math.random() * files.length)] //chooses a random .txt file
         var data = fs.readFileSync(chosen.toString()); //saves the contents of the file to = data
         console.log(chosen.toString()) //reads riddle in the console
@@ -423,38 +471,54 @@ client.on('message', async message   => {
         //Runs the Halftime code at the beginning of the code at 9pm CST
         const half = cron.schedule('0 0 21 * * *', () =>{
             halftime();
+            setTimeout(halft, 3.32e+7)
             },{                
                 timezone: "America/Chicago"      
         });
         half.start();
-        
+        function halft(){
+            half.stop();
+        }
         //Gives answer of the riddle at 11pm CST
         const answer = cron.schedule('0 0 23 * * *', () =>{
             message.channel.send(`<@&${'837874063467610152'}>`); //mentions everyone with the Rookie role
             var answer = fs.readFileSync("answer/" + chosen.toString()); //Changes original file to directory to answer and finds a .txt file with the same name from the random directory
             message.channel.send(answer.toString()); //Reads contents in chat
+            setTimeout(answer1(), 3.32e+7);
             },{                  
                 timezone: "America/Chicago"      
         });
         answer.start();
+        function answer1(){
+            answer.stop();
+        }
 
         //Runs thanks command 10 seconds after answer is given so that way it doesnt interupt the answer being given
         const thanks = cron.schedule('10 0 23 * * *', () => {
-            client.channels.cache.get('825489770557341696').send("Thank you everyone for your answers!");
+            client.channels.cache.get('850061744029958226').send("Thank you everyone for your answers!");
+            setTimeout(thanks1(), 3.32e+7)
             },{  
                 
                 timezone: "America/Chicago"      
         });
         thanks.start(); 
+        function thanks1(){
+            thanks.stop();
+        }
+
   
         function dm(){ //Dm's Devin what .txt file was read
             client.users.fetch("683686127428829194", false).then(dm => {
+                var answer = fs.readFileSync("answer/" + chosen.toString());
                 dm.send("**"+ chosen+"**"+" This was the file read!");
+                dm.send("This is the answer ---> " + answer.toString());
             })
         }
        function dmtwo(){ //Dm's Brennen what .txt file was read
             client.users.fetch("766353364933410820", false).then(dm => {
+                var answer = fs.readFileSync("answer/" + chosen.toString());
                 dm.send("**"+ chosen+"**"+" This was the file read!");
+                dm.send("This is the answer ---> " + answer.toString());
             })
         }
         setTimeout(dm, 1000);
@@ -462,7 +526,7 @@ client.on('message', async message   => {
 
     } else if (command == 'parksnrec'){ //Command for ParksnRec Riddles
         message.channel.send(`<@&${'837874063467610152'}>`); //Tags everyone with the Rookie role
-        var files = fs.readdirSync('ParksnRec/')   //Goes to random file directory
+        var files = fs.readdirSync('random/')   //Goes to random file directory
         let chosen = files[Math.floor(Math.random() * files.length)] //chooses a random .txt file
         var data = fs.readFileSync(chosen.toString()); //saves the contents of the file to = data
         console.log(chosen.toString()) //reads riddle in the console
@@ -472,38 +536,54 @@ client.on('message', async message   => {
         //Runs the Halftime code at the beginning of the code at 9pm CST
         const half = cron.schedule('0 0 21 * * *', () =>{
             halftime();
+            setTimeout(halft, 3.32e+7)
             },{                
                 timezone: "America/Chicago"      
         });
         half.start();
-        
+        function halft(){
+            half.stop();
+        }
         //Gives answer of the riddle at 11pm CST
         const answer = cron.schedule('0 0 23 * * *', () =>{
             message.channel.send(`<@&${'837874063467610152'}>`); //mentions everyone with the Rookie role
             var answer = fs.readFileSync("answer/" + chosen.toString()); //Changes original file to directory to answer and finds a .txt file with the same name from the random directory
             message.channel.send(answer.toString()); //Reads contents in chat
+            setTimeout(answer1(), 3.32e+7);
             },{                  
                 timezone: "America/Chicago"      
         });
         answer.start();
+        function answer1(){
+            answer.stop();
+        }
 
         //Runs thanks command 10 seconds after answer is given so that way it doesnt interupt the answer being given
         const thanks = cron.schedule('10 0 23 * * *', () => {
-            client.channels.cache.get('825489770557341696').send("Thank you everyone for your answers!");
+            client.channels.cache.get('850061744029958226').send("Thank you everyone for your answers!");
+            setTimeout(thanks1(), 3.32e+7)
             },{  
                 
                 timezone: "America/Chicago"      
         });
         thanks.start(); 
+        function thanks1(){
+            thanks.stop();
+        }
+
   
         function dm(){ //Dm's Devin what .txt file was read
             client.users.fetch("683686127428829194", false).then(dm => {
+                var answer = fs.readFileSync("answer/" + chosen.toString());
                 dm.send("**"+ chosen+"**"+" This was the file read!");
+                dm.send("This is the answer ---> " + answer.toString());
             })
         }
        function dmtwo(){ //Dm's Brennen what .txt file was read
             client.users.fetch("766353364933410820", false).then(dm => {
+                var answer = fs.readFileSync("answer/" + chosen.toString());
                 dm.send("**"+ chosen+"**"+" This was the file read!");
+                dm.send("This is the answer ---> " + answer.toString());
             })
         }
         setTimeout(dm, 1000);
@@ -535,5 +615,6 @@ client.on('message', async message   => {
 
     }
 });
+
 
 client.login(''); //Token to connect to discord, can be found at https://discord.com/developers/applications keep your Token private to keep your bot safe
