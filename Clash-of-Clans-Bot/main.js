@@ -12,7 +12,6 @@ let Clans = {}
 let WarIds = {}
 let Players = {}
 const prefix = '!';
-console.log(file[0])
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
